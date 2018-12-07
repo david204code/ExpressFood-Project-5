@@ -9,5 +9,7 @@ CREATE TABLE Clients (
 );
 
 CREATE TABLE Addresses (
-
+  addressId INT PRIMARY KEY AUTO_INCREMENT,
+  address VARCHAR(40),
+  city VARCHAR(15)
 );
