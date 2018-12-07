@@ -7,3 +7,7 @@ CREATE TABLE Clients (
   email VARCHAR(50),
   phone VARCHAR(20)
 );
+
+CREATE TABLE Addresses (
+
+);
