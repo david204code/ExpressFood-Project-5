@@ -14,5 +14,7 @@ CREATE TABLE Addresses (
   city VARCHAR(15),
   state VARCHAR(10),
   country VARCHAR(15),
-  postCode VARCHAR(8)
+  postCode VARCHAR(8),
+  clientId INT,
+  FOREIGN KEY (clientId) REFERENCES Clients(clientId)
 );
