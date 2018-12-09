@@ -45,3 +45,11 @@ ALTER TABLE Orders
 ADD FOREIGN KEY(driverId)
 REFERENCES Delievers(driverId)
 ON DELETE SET NULL;
+
+CREATE TABLE OrderItems (
+  orderItemId INT PRIMARY KEY AUTO_INCREMENT,
+  orderId INT,
+  itemId INT, 
+  quantity INT,
+  FOREIGN KEY (orderId) REFERENCES Orders(orderId) 
+)
