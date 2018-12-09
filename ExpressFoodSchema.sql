@@ -33,3 +33,10 @@ CREATE TABLE Orders (
   country VARCHAR(15),
   postCode VARCHAR(8)
 );
+
+CREATE TABLE Delievers (
+  driverId INT PRIMARY KEY AUTO_INCREMENT,
+  firstName VARCHAR(20),
+  lastName VARCHAR(20),
+  phone VARCHAR(20)
+);
