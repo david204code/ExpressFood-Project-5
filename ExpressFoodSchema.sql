@@ -22,7 +22,7 @@ CREATE TABLE Addresses (
 CREATE TABLE Orders (
   orderId INT PRIMARY KEY AUTO_INCREMENT,
   clientId INT,
-  deliverId INT,
+  driverId INT,
   totalPrice FLOAT(4,2),
   status ENUM('Preparing', 'Cooking', 'Cancel', 'Delievery'),
   date DATETIME,
