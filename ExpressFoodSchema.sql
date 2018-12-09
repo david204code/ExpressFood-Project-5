@@ -40,3 +40,8 @@ CREATE TABLE Delievers (
   lastName VARCHAR(20),
   phone VARCHAR(20)
 );
+
+ALTER TABLE Orders
+ADD FOREIGN KEY(driverId)
+REFERENCES Delievers(driverId)
+ON DELETE SET NULL;
