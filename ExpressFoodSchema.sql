@@ -52,4 +52,12 @@ CREATE TABLE OrderItems (
   itemId INT, 
   quantity INT,
   FOREIGN KEY (orderId) REFERENCES Orders(orderId) 
-)
+);
+
+CREATE TABLE Menu (
+  itemId INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(10),
+  description VARCHAR(100),
+  price FLOAT(4,2),
+  active TINYINT(1)
+);
