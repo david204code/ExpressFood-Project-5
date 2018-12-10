@@ -31,7 +31,8 @@ CREATE TABLE Orders (
   city VARCHAR(15),
   state VARCHAR(10),
   country VARCHAR(15),
-  postCode VARCHAR(8)
+  postCode VARCHAR(8),
+  FOREIGN KEY (clientId) REFERENCES Clients(clientId)
 );
 
 CREATE TABLE Delievers (
