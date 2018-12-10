@@ -35,17 +35,17 @@ CREATE TABLE Orders (
   FOREIGN KEY (clientId) REFERENCES Clients(clientId)
 );
 
+ALTER TABLE Orders
+ADD FOREIGN KEY(driverId)
+REFERENCES Delievers(driverId)
+ON DELETE SET NULL;
+
 CREATE TABLE Delievers (
   driverId INT PRIMARY KEY AUTO_INCREMENT,
   firstName VARCHAR(20),
   lastName VARCHAR(20),
   phone VARCHAR(20)
 );
-
-ALTER TABLE Orders
-ADD FOREIGN KEY(driverId)
-REFERENCES Delievers(driverId)
-ON DELETE SET NULL;
 
 CREATE TABLE OrderItems (
   orderItemId INT PRIMARY KEY AUTO_INCREMENT,
