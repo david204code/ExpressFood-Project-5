@@ -55,7 +55,7 @@ CREATE TABLE OrderItems (
   FOREIGN KEY (orderId) REFERENCES Orders(orderId) 
 );
 
-ALTAR TABLE OrderItems
+ALTER TABLE OrderItems
 ADD FOREIGN KEY (itemId) REFERENCES Menu(itemId)
 
 CREATE TABLE Menu (
