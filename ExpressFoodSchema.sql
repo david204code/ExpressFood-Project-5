@@ -15,7 +15,7 @@ CREATE TABLE Clients (
   phone VARCHAR(20) NOT NULL
 );
 
--- DESCRIBE Clients;
+DESCRIBE Clients;
 
 CREATE TABLE Addresses (
   addressId INT PRIMARY KEY AUTO_INCREMENT,
@@ -28,8 +28,7 @@ CREATE TABLE Addresses (
   FOREIGN KEY (clientId) REFERENCES Clients(clientId)
 );
 
--- DESCRIBE Addresses;
-
+DESCRIBE Addresses;
 
 CREATE TABLE Delivers (
   deliverId INT PRIMARY KEY AUTO_INCREMENT,
@@ -38,7 +37,7 @@ CREATE TABLE Delivers (
   phone VARCHAR(20)
 );
 
--- DESCRIBE Delivers;
+DESCRIBE Delivers;
 
 CREATE TABLE Orders (
   orderId INT PRIMARY KEY AUTO_INCREMENT,
@@ -57,7 +56,7 @@ CREATE TABLE Orders (
   FOREIGN KEY (deliverId) REFERENCES Delivers(deliverId)
 );
 
--- DESCRIBE Orders;
+DESCRIBE Orders;
 
 CREATE TABLE Menu (
     itemId INT PRIMARY KEY AUTO_INCREMENT,
@@ -68,7 +67,7 @@ CREATE TABLE Menu (
     active TINYINT(1)
 );
 
--- DESCRIBE Menu;
+DESCRIBE Menu;
 
 CREATE TABLE OrderItems (
     orderItemId INT PRIMARY KEY AUTO_INCREMENT,
@@ -79,7 +78,7 @@ CREATE TABLE OrderItems (
     FOREIGN KEY (itemId) REFERENCES Menu(itemId)
 );
 
--- DESCRIBE OrderItems;
+DESCRIBE OrderItems;
 
 -- INSERT CLIENTS
 INSERT INTO Clients
