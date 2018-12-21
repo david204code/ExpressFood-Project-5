@@ -19,16 +19,17 @@ CREATE TABLE Clients (
 
 CREATE TABLE Addresses (
   addressId INT PRIMARY KEY AUTO_INCREMENT,
-  address VARCHAR(40),
-  city VARCHAR(15),
-  state VARCHAR(10),
-  country VARCHAR(15),
+  address VARCHAR(50),
+  city VARCHAR(30),
+  state VARCHAR(50),
+  country VARCHAR(50),
   postCode VARCHAR(8),
   clientId INT,
   FOREIGN KEY (clientId) REFERENCES Clients(clientId)
 );
 
 -- DESCRIBE Addresses;
+
 
 CREATE TABLE Delivers (
   deliverId INT PRIMARY KEY AUTO_INCREMENT,
@@ -45,12 +46,12 @@ CREATE TABLE Orders (
   deliverId INT,
   totalPrice FLOAT(4,2),
   status ENUM('pending', 'processing', 'delievered', 'cancelled'),
-  date DATETIME,
+  date DATETIME DEFAULT CURRENT_TIMESTAMP,
   paymentMethod ENUM('cash', 'paypal', 'credit_card'),
-  address VARCHAR(40),
-  city VARCHAR(15),
-  state VARCHAR(10),
-  country VARCHAR(15),
+  address VARCHAR(50),
+  city VARCHAR(30),
+  state VARCHAR(50),
+  country VARCHAR(50),
   postCode VARCHAR(8),
   FOREIGN KEY (clientId) REFERENCES Clients(clientId),
   FOREIGN KEY (deliverId) REFERENCES Delivers(deliverId)
@@ -60,9 +61,9 @@ CREATE TABLE Orders (
 
 CREATE TABLE Menu (
     itemId INT PRIMARY KEY AUTO_INCREMENT,
-    type ENUM('main', 'dessert'),
-    name VARCHAR(10),
+    name VARCHAR(100),
     description VARCHAR(100),
+    type ENUM('main', 'dessert'),
     price FLOAT(4,2),
     active TINYINT(1)
 );
@@ -78,7 +79,7 @@ CREATE TABLE OrderItems (
     FOREIGN KEY (itemId) REFERENCES Menu(itemId)
 );
 
-  -- DESCRIBE OrderItems;
+-- DESCRIBE OrderItems;
 
 -- INSERT CLIENTS
 INSERT INTO Clients
