@@ -94,7 +94,6 @@ INSERT INTO Clients VALUES(NULL, 'Michael', 'Owen', 'owenEngland@hotmail.com', '
 
 -- INSERT ADDRESSES
 
-
 SELECT * FROM Clients;
 
 INSERT INTO Addresses VALUES(NULL, '101 College hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP', '1');
