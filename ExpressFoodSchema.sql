@@ -88,3 +88,44 @@ INSERT INTO Clients
 
 -- INSERT ADDRESSES
 INSERT INTO Addresses;
+
+
+INSERT INTO Clients VALUES(NULL, 'David', 'Beckham', 'becksdavid7@gmail.com', '9086897258');
+INSERT INTO Clients VALUES(NULL, 'Lionel', 'Messi', 'messi10@gmail.com', '9973833810');
+INSERT INTO Clients VALUES(NULL, 'David', 'Luiz', 'davidluiz@gmail.com', '9698713028');
+
+
+SELECT * FROM Clients;
+
+INSERT INTO Addresses VALUES(NULL, '101 College hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP', '1');
+
+SELECT * FROM Addresses;
+
+INSERT INTO Delivers VALUES(NULL, 'Jack', 'Bauer', '9853983399');
+
+SELECT * FROM Delivers;
+
+INSERT INTO Menu VALUES(NULL, 'Sushi box set a', 'Tiger rolls, Philadephia rolls, Sake(salmon)', '8.00', '1');
+
+SELECT * FROM Menu;
+
+
+
+INSERT INTO Orders VALUES(NULL, '1', '1', '0.00', 'pending', NULL, 'paypal', '101 College hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
+
+SELECT * FROM Orders;
+
+INSERT INTO OrderItems VALUES(NULL, '1', '1', '2');
+
+SELECT * FROM OrderItems;
+
+
+SELECT 
+    o.orderId, o.totalPrice, 
+    CONCAT(c.firstName, ' ', c.lastName) AS Client,
+    CONCAT(d.firstName, ' ', d.lastName) AS Deliver
+FROM Orders o
+JOIN Clients c USING(clientId)
+JOIN Delivers d USING(deliverId)
+WHERE o.clientId = 1
+;
