@@ -62,7 +62,7 @@ CREATE TABLE Menu (
     itemId INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100),
     description VARCHAR(100),
-    type ENUM('main', 'dessert'),
+    type ENUM('Main', 'Dessert'),
     price FLOAT(4,2),
     active TINYINT(1)
 );
@@ -109,16 +109,14 @@ INSERT INTO Addresses VALUES(NULL, '1 Anfield', 'Liverpool', 'New England', 'Uni
 SELECT * FROM Addresses;
 
 -- INSERT Delievers
-
-INSERT INTO Addresses VALUES(NULL, '101 College hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP', '1');
-
-SELECT * FROM Addresses;
-
 INSERT INTO Delivers VALUES(NULL, 'Jack', 'Bauer', '9853983399');
+INSERT INTO Delivers VALUES(NULL, 'Joe', 'Martial', '9865236916');
+INSERT INTO Delivers VALUES(NULL, 'Marvel', 'Jones', '9652149635');
 
 SELECT * FROM Delivers;
 
-INSERT INTO Menu VALUES(NULL, 'Sushi box set a', 'Tiger rolls, Philadephia rolls, Sake(salmon)', '8.00', '1');
+-- INSERT Menu
+
 
 SELECT * FROM Menu;
 
