@@ -137,13 +137,26 @@ SELECT * FROM Menu;
 
 
 
-INSERT INTO Orders VALUES(NULL, '1', '1', '0.00', 'pending', NULL, 'paypal', '101 College hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
+INSERT INTO Orders VALUES(NULL, '1', '1', '0.00', 'pending', DEFAULT, 'paypal', '101 College hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
 
 SELECT * FROM Orders;
 
 INSERT INTO OrderItems VALUES(NULL, '1', '1', '2');
 
 SELECT * FROM OrderItems;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 SELECT 
