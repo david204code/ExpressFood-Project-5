@@ -135,6 +135,7 @@ INSERT INTO Menu(itemId, name, type, price, active) VALUES(NULL, 'Chocolate Chip
 
 SELECT * FROM Menu;
 
+-- INSERT Orders
 INSERT INTO Orders VALUES(NULL, '1', '1', '0.00', 'delievered', DEFAULT, 'paypal', '101 College hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
 INSERT INTO Orders VALUES(NULL, '2', '2', '0.00', 'delievered', DEFAULT, 'cash', '94 Hilltop Road', 'London', 'New England', 'United Kingdom', 'SW12 7EA');
 INSERT INTO Orders VALUES(NULL, '3', '3', '0.00', 'cancelled', DEFAULT, 'credit_card', '18 Newbury Drive', 'London', 'New England', 'United Kingdom', 'SW16 9PO');
@@ -148,17 +149,23 @@ INSERT INTO Orders VALUES(NULL, '10', '2', '0.00', 'cancelled', DEFAULT, 'cash',
 
 SELECT * FROM Orders;
 
-
-
-
-
-INSERT INTO Orders VALUES(NULL, '1', '1', '0.00', 'pending', DEFAULT, 'paypal', '101 College hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
-
-SELECT * FROM Orders;
-
+-- INSERT OrderItems
 INSERT INTO OrderItems VALUES(NULL, '1', '1', '2');
+INSERT INTO OrderItems VALUES(NULL, '2', '2', '1');
+INSERT INTO OrderItems VALUES(NULL, '3', '2', '3');
+INSERT INTO OrderItems VALUES(NULL, '4', '6', '5');
+INSERT INTO OrderItems VALUES(NULL, '5', '5', '1');
+INSERT INTO OrderItems VALUES(NULL, '6', '3', '1');
+INSERT INTO OrderItems VALUES(NULL, '7', '3', '4');
+INSERT INTO OrderItems VALUES(NULL, '8', '4', '3');
+INSERT INTO OrderItems VALUES(NULL, '9', '4', '1');
+INSERT INTO OrderItems VALUES(NULL, '10', '5', '2');
+INSERT INTO OrderItems VALUES(NULL, '10', '16', '1');
+INSERT INTO OrderItems VALUES(NULL, '4', '11', '2');
+INSERT INTO OrderItems VALUES(NULL, '6', '12', '4');
 
 SELECT * FROM OrderItems;
+
 
 
 
