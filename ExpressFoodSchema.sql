@@ -44,7 +44,7 @@ CREATE TABLE Orders (
   clientId INT,
   deliverId INT,
   totalPrice FLOAT(4,2),
-  status ENUM('pending', 'processing', 'delievered', 'cancelled'),
+  status ENUM('delievered', 'cancelled'),
   date DATETIME DEFAULT CURRENT_TIMESTAMP,
   paymentMethod ENUM('cash', 'paypal', 'credit_card'),
   address VARCHAR(50),
@@ -150,11 +150,25 @@ SELECT * FROM OrderItems;
 
 
 
+SELECT 
+    o.orderId, o.totalPrice, 
+    CONCAT(c.firstName, ' ', c.lastName) AS Client,
+    CONCAT(d.firstName, ' ', d.lastName) AS Deliver,
+    CONCAT(a.address, ', ', a.city, ' ', a.state, ', ', a.country, ' ', a.postCode) AS Address
+FROM Orders o
+JOIN Clients c USING(clientId)
+JOIN Delivers d USING(deliverId)
+JOIN Addresses a USING(AddressId)
+WHERE o.clientId = 1
+;
 
-
-
-
-
+SELECT oi.orderId, c.firstName, c.lastName, m.name, m.price, oi.quantity
+FROM OrderItems oi
+JOIN Menu m USING(itemId)
+JOIN Orders o USING(orderId)
+JOIN Clients c
+ON o.clientId = c.clientId
+WHERE orderId = 1;
 
 
 
