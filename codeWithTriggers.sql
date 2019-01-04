@@ -1,4 +1,7 @@
 
+ -- SET FOREIGN_KEY_CHECKS = 0;
+
+SHOW TABLES;
 DROP TABLE IF EXISTS Addresses;
 DROP TABLE IF EXISTS OrderItems;
 DROP TABLE IF EXISTS Orders;
@@ -78,7 +81,93 @@ CREATE TABLE OrderItems (
     FOREIGN KEY (itemId) REFERENCES Menu(itemId)
 );
 
-DESCRIBE OrderItems;
+DESCRIBE orders;
+
+
+DROP TRIGGER IF EXISTS update_order_total_on_insert;
+DELIMITER $$
+    CREATE TRIGGER update_order_total_on_insert AFTER INSERT
+        ON OrderItems
+        FOR EACH ROW BEGIN
+            DECLARE orderTotal FLOAT;
+            
+            SELECT SUM(totalPerItem) total
+            FROM (
+                SELECT orderId, quantity * price totalPerItem
+                FROM (
+                    SELECT oi.orderId, oi.quantity, m.price, m.itemId
+                    FROM OrderItems oi
+                    JOIN Menu m USING(itemId)
+                ) AS T1
+            ) AS T2
+            WHERE orderId = NEW.orderId
+            GROUP BY orderId
+            INTO orderTotal;
+            
+            
+            UPDATE Orders
+            SET totalPrice = orderTotal
+            WHERE orderId = NEW.orderId;
+        END $$
+DELIMITER ;
+
+DROP TRIGGER IF EXISTS update_order_total_on_update;
+DELIMITER $$
+    CREATE TRIGGER update_order_total_on_update AFTER UPDATE
+        ON OrderItems
+        FOR EACH ROW BEGIN
+            DECLARE orderTotal FLOAT;
+            
+            SELECT SUM(totalPerItem) total
+            FROM (
+                SELECT orderId, quantity * price totalPerItem
+                FROM (
+                    SELECT oi.orderId, oi.quantity, m.price, m.itemId
+                    FROM OrderItems oi
+                    JOIN Menu m USING(itemId)
+                ) AS T1
+            ) AS T2
+            WHERE orderId = NEW.orderId
+            GROUP BY orderId
+            INTO orderTotal;
+            
+            
+            UPDATE Orders
+            SET totalPrice = orderTotal
+            WHERE orderId = NEW.orderId;
+        END $$
+DELIMITER ;
+
+
+DROP TRIGGER IF EXISTS update_order_total_on_delete;
+DELIMITER $$
+    CREATE TRIGGER update_order_total_on_delete AFTER DELETE
+        ON OrderItems
+        FOR EACH ROW BEGIN
+            DECLARE orderTotal FLOAT;
+            
+            SELECT SUM(totalPerItem) total
+            FROM (
+                SELECT orderId, quantity * price totalPerItem
+                FROM (
+                    SELECT oi.orderId, oi.quantity, m.price, m.itemId
+                    FROM OrderItems oi
+                    JOIN Menu m USING(itemId)
+                ) AS T1
+            ) AS T2
+            WHERE orderId = OLD.orderId
+            GROUP BY orderId
+            INTO orderTotal;
+            
+            
+            UPDATE Orders
+            SET totalPrice = orderTotal
+            WHERE orderId = OLD.orderId;
+        END $$
+DELIMITER ;
+
+
+
 
 -- INSERT CLIENTS
 INSERT INTO Clients VALUES(NULL, 'David', 'Beckham', 'becksdavid7@gmail.com', '9086897258');
@@ -135,7 +224,8 @@ INSERT INTO Menu(itemId, name, type, price, active) VALUES(NULL, 'Chocolate Chip
 
 SELECT * FROM Menu;
 
--- INSERT Orders
+
+DESCRIBE Orders;
 INSERT INTO Orders VALUES(NULL, '1', '1', '0.00', 'delievered', DEFAULT, 'paypal', '101 College hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
 INSERT INTO Orders VALUES(NULL, '2', '2', '0.00', 'delievered', DEFAULT, 'cash', '94 Hilltop Road', 'London', 'New England', 'United Kingdom', 'SW12 7EA');
 INSERT INTO Orders VALUES(NULL, '3', '3', '0.00', 'cancelled', DEFAULT, 'credit_card', '18 Newbury Drive', 'London', 'New England', 'United Kingdom', 'SW16 9PO');
@@ -149,7 +239,7 @@ INSERT INTO Orders VALUES(NULL, '10', '2', '0.00', 'cancelled', DEFAULT, 'cash',
 
 SELECT * FROM Orders;
 
--- INSERT OrderItems
+DESCRIBE OrderItems;
 INSERT INTO OrderItems VALUES(NULL, '1', '1', '2');
 INSERT INTO OrderItems VALUES(NULL, '2', '2', '1');
 INSERT INTO OrderItems VALUES(NULL, '3', '2', '3');
@@ -164,8 +254,8 @@ INSERT INTO OrderItems VALUES(NULL, '10', '16', '1');
 INSERT INTO OrderItems VALUES(NULL, '4', '11', '2');
 INSERT INTO OrderItems VALUES(NULL, '6', '12', '4');
 
-SELECT * FROM OrderItems;
-
+SELECT orderId, totalPrice FROM Orders WHERE orderId = 6;
+DESCRIBE OrderItems;
 
 
 
@@ -180,28 +270,18 @@ SELECT
 FROM Orders o
 JOIN Clients c USING(clientId)
 JOIN Delivers d USING(deliverId)
-JOIN Addresses a USING(AddressId)
+JOIN Addresses a USING(Address)
 WHERE o.clientId = 1;
+
 
 SELECT 
-    o.orderId, o.totalPrice, 
-    CONCAT(c.firstName, ' ', c.lastName) AS Client,
-    CONCAT(d.firstName, ' ', d.lastName) AS Deliver
-FROM Orders o
-JOIN Clients c USING(clientId)
-JOIN Delivers d USING(deliverId)
-WHERE o.clientId = 1;
-
-SELECT oi.orderId, c.firstName, c.lastName, m.name, m.price, oi.quantity
-FROM OrderItems oi
-JOIN Menu m USING(itemId)
-JOIN Orders o USING(orderId)
-JOIN Clients c
-ON o.clientId = c.clientId
-WHERE orderId = 1;
-
-
-
+    Orders.orderId, Orders.totalPrice
+FROM Orders
+JOIN Clients USING(clientId)
+JOIN Delivers USING(deliverId)
+JOIN Addresses USING(Address)
+WHERE clientId = 1;
+    
 
 SELECT 
     o.orderId, o.totalPrice, 
@@ -212,3 +292,18 @@ JOIN Clients c USING(clientId)
 JOIN Delivers d USING(deliverId)
 WHERE o.clientId = 1
 ;
+
+SELECT oi.orderId, c.firstName, c.lastName, m.name, m.price, oi.quantity
+FROM OrderItems oi
+JOIN Menu m USING(itemId)
+JOIN Orders o USING(orderId)
+JOIN Clients c
+ON o.clientId = c.clientId
+WHERE orderId = 1;
+
+
+DESCRIBE Menu;
+
+<-- DELETE FROM Addresses WHERE addressId = 1;
+<-- UPDATE Addresses SET address = '123 Main Street' WHERE addressId = 1; -- >
+
