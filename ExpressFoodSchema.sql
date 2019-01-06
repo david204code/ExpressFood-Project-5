@@ -20,9 +20,9 @@ DESCRIBE Clients;
 CREATE TABLE Addresses (
   addressId INT PRIMARY KEY AUTO_INCREMENT,
   address VARCHAR(50),
-  city VARCHAR(30),
-  state VARCHAR(50),
-  country VARCHAR(50),
+  city VARCHAR(50),
+  state VARCHAR(40),
+  country VARCHAR(40),
   postCode VARCHAR(8),
   clientId INT,
   FOREIGN KEY (clientId) REFERENCES Clients(clientId)
@@ -43,14 +43,14 @@ CREATE TABLE Orders (
   orderId INT PRIMARY KEY AUTO_INCREMENT,
   clientId INT,
   deliverId INT,
-  totalPrice FLOAT(4,2),
+  orderPrice FLOAT(4,2),
   status ENUM('delievered', 'cancelled'),
-  date DATETIME DEFAULT CURRENT_TIMESTAMP,
+  date DATETIME DEFAULT,
   paymentMethod ENUM('cash', 'paypal', 'credit_card'),
   address VARCHAR(50),
-  city VARCHAR(30),
-  state VARCHAR(50),
-  country VARCHAR(50),
+  city VARCHAR(50),
+  state VARCHAR(40),
+  country VARCHAR(40),
   postCode VARCHAR(8),
   FOREIGN KEY (clientId) REFERENCES Clients(clientId),
   FOREIGN KEY (deliverId) REFERENCES Delivers(deliverId)
@@ -60,11 +60,10 @@ DESCRIBE Orders;
 
 CREATE TABLE Menu (
     itemId INT PRIMARY KEY AUTO_INCREMENT,
+    type ENUM('Main', 'Dessert'),
     name VARCHAR(100),
     description VARCHAR(100) DEFAULT(''),
-    type ENUM('Main', 'Dessert'),
-    price FLOAT(4,2),
-    active TINYINT(1)
+    price FLOAT(4,2)
 );
 
 DESCRIBE Menu;
@@ -165,6 +164,7 @@ INSERT INTO OrderItems VALUES(NULL, '4', '11', '2');
 INSERT INTO OrderItems VALUES(NULL, '6', '12', '4');
 
 SELECT * FROM OrderItems;
+
 
 
 
