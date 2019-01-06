@@ -45,7 +45,7 @@ CREATE TABLE Orders (
   deliverId INT,
   orderPrice FLOAT(4,2),
   status ENUM('delievered', 'cancelled'),
-  date DATETIME DEFAULT,
+  date DATETIME,
   paymentMethod ENUM('cash', 'paypal', 'credit_card'),
   address VARCHAR(50),
   city VARCHAR(50),
