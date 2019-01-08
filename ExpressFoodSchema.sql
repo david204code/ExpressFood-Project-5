@@ -115,16 +115,16 @@ INSERT INTO Delivers VALUES(NULL, 'Marvel', 'Jones', '9652149635');
 SELECT * FROM Delivers;
 
 -- INSERT Menu
-INSERT INTO Menu VALUES(NULL, 'Sushi Box Set A', 'Tiger Rolls, Philadephia Rolls, Sake(salmon)', 'Main', '8.00', '1');
-INSERT INTO Menu VALUES(NULL, 'Sushi Box Set B', 'Sashimis, Rainbow Rolls, Sake(salmon)', 'Main', '8.00', '0');
-INSERT INTO Menu VALUES(NULL, 'Sushi Box Set C', 'Spicy Tuna Rolls, Tiger Rolls, Ebi', 'Main', '8.00', '0');
-INSERT INTO Menu Values(NULL, 'Sushi Box Set D', 'Dynamite Rolls, Dragon Rolls, Ahi', 'Main', '8.00', '0');
-INSERT INTO Menu VALUES(NULL, 'Fresh Pasta Salad', 'Pasta, Tomatos, Cucumber, Cheese, Sweet Corn', 'Main', '7.00', '1');
-INSERT INTO Menu VALUES(NULL, 'Chicken Salad', 'Cooked Chicken, Onions, Sweet Corn, Carrots', 'Main', '6.00', '0');
-INSERT INTO Menu VALUES(NULL, 'Potato Salad', 'Onion, Celery, Egg, Potato', 'Main', '5.00', '0');
-INSERT INTO Menu VALUES(NULL, 'Tuna Sandwich', 'Tuna, Whole Wheat Bread, Mayo, Sweet Corn', 'Main', '5.00', '0');
-INSERT INTO Menu VALUES(NULL, 'Avocado Tuna Salad',	'Tuna, Avocado, Lettuce, Onions', 'Main', '6', '0');
-INSERT INTO Menu VALUES(NULL, 'Egg Mayo Sandwich', 'Whole Wheat Bread, Egg, Mayo', 'Main', '5', '0');
+INSERT INTO Menu VALUES(NULL, 'Main', 'Sushi Box Set A', 'Tiger Rolls, Philadephia Rolls, Sake(salmon)', '8.00');
+INSERT INTO Menu VALUES(NULL, 'Main', 'Sushi Box Set B', 'Sashimis, Rainbow Rolls, Sake(salmon)', '8.00');
+INSERT INTO Menu VALUES(NULL, 'Main', 'Sushi Box Set C', 'Spicy Tuna Rolls, Tiger Rolls, Ebi', '8.00');
+INSERT INTO Menu Values(NULL, 'Main', 'Sushi Box Set D', 'Dynamite Rolls, Dragon Rolls, Ahi', '8.00');
+INSERT INTO Menu VALUES(NULL, 'Main', 'Fresh Pasta Salad', 'Pasta, Tomatos, Cucumber, Cheese, Sweet Corn', '7.00');
+INSERT INTO Menu VALUES(NULL, 'Main', 'Chicken Salad', 'Cooked Chicken, Onions, Sweet Corn, Carrots', '6.00');
+INSERT INTO Menu VALUES(NULL, 'Main', 'Potato Salad', 'Onion, Celery, Egg, Potato', '5.00');
+INSERT INTO Menu VALUES(NULL, 'Main', 'Tuna Sandwich', 'Tuna, Whole Wheat Bread, Mayo, Sweet Corn', '5.00');
+INSERT INTO Menu VALUES(NULL, 'Main', 'Avocado Tuna Salad',	'Tuna, Avocado, Lettuce, Onions', '6.00');
+INSERT INTO Menu VALUES(NULL, 'Main', 'Egg Mayo Sandwich', 'Whole Wheat Bread, Egg, Mayo', '5.00');
 INSERT INTO Menu(itemId, name, type, price, active) VALUES(NULL, 'Chocolate Pudding', 'Dessert', '2.50', '1');
 INSERT INTO Menu(itemId, name, type, price, active) VALUES(NULL, 'Stawberry Cheesecake', 'Dessert', '2.50', '0');
 INSERT INTO Menu(itemId, name, type, price, active) VALUES(NULL, 'Rasberry Pudding', 'Dessert', '2.50', '1');
