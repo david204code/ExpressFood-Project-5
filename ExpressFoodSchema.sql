@@ -125,12 +125,12 @@ INSERT INTO Menu VALUES(NULL, 'Main', 'Potato Salad', 'Onion, Celery, Egg, Potat
 INSERT INTO Menu VALUES(NULL, 'Main', 'Tuna Sandwich', 'Tuna, Whole Wheat Bread, Mayo, Sweet Corn', '5.00');
 INSERT INTO Menu VALUES(NULL, 'Main', 'Avocado Tuna Salad',	'Tuna, Avocado, Lettuce, Onions', '6.00');
 INSERT INTO Menu VALUES(NULL, 'Main', 'Egg Mayo Sandwich', 'Whole Wheat Bread, Egg, Mayo', '5.00');
-INSERT INTO Menu(itemId, name, type, price, active) VALUES(NULL, 'Chocolate Pudding', 'Dessert', '2.50', '1');
-INSERT INTO Menu(itemId, name, type, price, active) VALUES(NULL, 'Stawberry Cheesecake', 'Dessert', '2.50', '0');
-INSERT INTO Menu(itemId, name, type, price, active) VALUES(NULL, 'Rasberry Pudding', 'Dessert', '2.50', '1');
-INSERT INTO Menu(itemId, name, type, price, active) VALUES(NULL, 'Chocolate Cake', 'Dessert', '2.50', '0');
-INSERT INTO Menu(itemId, name, type, price, active) VALUES(NULL, 'Chocolate Muffins', 'Dessert', '2.50', '0');
-INSERT INTO Menu(itemId, name, type, price, active) VALUES(NULL, 'Chocolate Chip Cookie', 'Dessert', '2.50', '0');
+INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Chocolate Pudding', '2.50');
+INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Stawberry Cheesecake', '2.50');
+INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Rasberry Pudding', '2.50');
+INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Chocolate Cake', '2.50');
+INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Chocolate Muffins', '2.50');
+INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Chocolate Chip Cookie', '2.50');
 
 SELECT * FROM Menu;
 
