@@ -199,7 +199,6 @@ WHERE orderId = 5;
 
 
 
-
 SELECT 
     o.orderId, o.totalPrice, 
     CONCAT(c.firstName, ' ', c.lastName) AS Client,
@@ -212,14 +211,3 @@ JOIN Addresses a USING(AddressId)
 WHERE o.clientId = 1;
 
 
-
-
-SELECT 
-    o.orderId, o.totalPrice, 
-    CONCAT(c.firstName, ' ', c.lastName) AS Client,
-    CONCAT(d.firstName, ' ', d.lastName) AS Deliver
-FROM Orders o
-JOIN Clients c USING(clientId)
-JOIN Delivers d USING(deliverId)
-WHERE o.clientId = 1
-;
