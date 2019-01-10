@@ -178,7 +178,15 @@ INSERT INTO Orders VALUES(NULL, '5', '2', '14.00', 'delievered', '2019-01-11', '
 INSERT INTO OrderItems VALUES(NULL, '5', '9', '2');
 INSERT INTO OrderItems VALUES(NULL, '5', '12', '2');
 
-
+--Working queries
+SELECT 
+    o.orderId, o.orderPrice, 
+    CONCAT(c.firstName, ' ', c.lastName) AS Client,
+    CONCAT(d.firstName, ' ', d.lastName) AS Deliver
+FROM Orders o
+JOIN Clients c USING(clientId)
+JOIN Delivers d USING(deliverId)
+WHERE o.clientId = 1;
 
 
 
