@@ -134,6 +134,8 @@ INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Chocolate C
 
 SELECT * FROM Menu;
 
+
+-- Need to fix the output 
 INSERT INTO Orders VALUES(NULL, '1', '1', '23.50', 'delievered', '2019-01-05', 'paypal', '101 College Hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
 INSERT INTO OrderItems VALUES(NULL, '1', '1', '2');
 INSERT INTO OrderItems VALUES(NULL, '1', '11', '3');
