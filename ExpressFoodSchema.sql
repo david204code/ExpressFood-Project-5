@@ -134,6 +134,59 @@ INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Chocolate C
 
 SELECT * FROM Menu;
 
+INSERT INTO Orders VALUES(NULL, '1', '1', '23.50', 'delievered', '2019-01-05', 'paypal', '101 College Hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
+INSERT INTO OrderItems VALUES(NULL, '1', '1', '2');
+INSERT INTO OrderItems VALUES(NULL, '1', '11', '3');
+
+INSERT INTO Orders VALUES(NULL, '2', '2', '10.50', 'delievered', '2019-01-05', 'cash', '94 Hilltop Road', 'London', 'New England', 'United Kingdom', 'SW12 7EA');
+INSERT INTO OrderItems VALUES(NULL, '2', '2', '1');
+INSERT INTO OrderItems VALUES(NULL, '2', '12', '1');
+
+INSERT INTO Orders VALUES(NULL, '3', '3', '18.50', 'cancelled', '2019-01-05', 'credit_card', '18 Newbury Drive', 'London', 'New England', 'United Kingdom', 'SW16 9PO');
+INSERT INTO OrderItems VALUES(NULL, '3', '1', '2');
+INSERT INTO OrderItems VALUES(NULL, '3', '12', '1');
+
+INSERT INTO Orders VALUES(NULL, '4', '3', '39.00', 'delievered', '2019-01-07', 'credit_card', '1246 Riverside Road', 'London', 'New England', 'United Kingdom', 'N12 3EL');
+INSERT INTO OrderItems VALUES(NULL, '4', '3', '4');
+INSERT INTO OrderItems VALUES(NULL, '4', '14', '6');
+
+INSERT INTO Orders VALUES(NULL, '5', '2', '13.00', 'delievered', '2019-01-07', 'paypal', '201 Weston Place', 'London', 'New England', 'United Kingdom', 'EA59 3NB');
+INSERT INTO OrderItems VALUES(NULL, '5', '4', '1');
+INSERT INTO OrderItems VALUES(NULL, '5', '13', '2');
+
+INSERT INTO Orders VALUES(NULL, '6', '1', '34.00', 'delievered', '2019-01-08', 'paypal', '78 Foxborough', 'London', 'New England', 'United Kingdom', 'EA6 9UN');
+INSERT INTO OrderItems VALUES(NULL, '6', '5', '4');
+INSERT INTO OrderItems VALUES(NULL, '6', '15', '4');
+
+INSERT INTO Orders VALUES(NULL, '7', '1', '11.00', 'delievered', '2019-01-08', 'cash', '90 Mansion Palace',	'London', 'New England', 'United Kingdom', 'NM9 7SC');
+INSERT INTO OrderItems VALUES(NULL, '7', '6', '1');
+INSERT INTO OrderItems VALUES(NULL, '7', '16', '2');
+
+INSERT INTO Orders VALUES(NULL, '8', '3', '10.00', 'delievered', '2019-01-10', 'paypal', '19 Old Street', 'London', 'New England', 'United Kingdom', 'LN2 5UN');
+INSERT INTO OrderItems VALUES(NULL, '8', '7', '1');
+INSERT INTO OrderItems VALUES(NULL, '8', '14', '2');
+
+INSERT INTO Orders VALUES(NULL, '9', '2', '25.00', 'delievered', '2019-01-10', 'credit_card', '93 Stranford Road', 'Manchester', 'New England', 'United Kingdom', 'MC7 9CV');
+INSERT INTO OrderItems VALUES(NULL, '9', '8', '4');
+INSERT INTO OrderItems VALUES(NULL, '9', '16', '2');
+
+
+INSERT INTO Orders VALUES(NULL, '10', '2', '20.00', 'cancelled', '2019-01-11', 'cash', '1 Anfield', 'Liverpool', 'New England', 'United Kingdom', 'LC1 4PB');
+INSERT INTO OrderItems VALUES(NULL, '10', '10', '4');
+
+INSERT INTO Orders VALUES(NULL, '5', '2', '14.00', 'delievered', '2019-01-11', 'credit_card', '201 Weston Place', 'London', 'New England', 'United Kingdom', 'EA59 3NB');
+INSERT INTO OrderItems VALUES(NULL, '5', '9', '2');
+INSERT INTO OrderItems VALUES(NULL, '5', '12', '2');
+
+
+
+
+
+
+
+
+
+
 -- INSERT Orders
 INSERT INTO Orders VALUES(NULL, '1', '1', '0.00', 'delievered', DEFAULT, 'paypal', '101 College hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
 INSERT INTO Orders VALUES(NULL, '2', '2', '0.00', 'delievered', DEFAULT, 'cash', '94 Hilltop Road', 'London', 'New England', 'United Kingdom', 'SW12 7EA');
