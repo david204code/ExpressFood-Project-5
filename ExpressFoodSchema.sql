@@ -184,47 +184,6 @@ INSERT INTO OrderItems VALUES(NULL, '5', '12', '2');
 
 
 
-
-
-
--- INSERT Orders
-INSERT INTO Orders VALUES(NULL, '1', '1', '0.00', 'delievered', DEFAULT, 'paypal', '101 College hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
-INSERT INTO Orders VALUES(NULL, '2', '2', '0.00', 'delievered', DEFAULT, 'cash', '94 Hilltop Road', 'London', 'New England', 'United Kingdom', 'SW12 7EA');
-INSERT INTO Orders VALUES(NULL, '3', '3', '0.00', 'cancelled', DEFAULT, 'credit_card', '18 Newbury Drive', 'London', 'New England', 'United Kingdom', 'SW16 9PO');
-INSERT INTO Orders VALUES(NULL, '4', '3', '0.00', 'delievered', DEFAULT, 'credit_card', '1246 Riverside Road', 'London', 'New England', 'United Kingdom', 'N12 3EL');
-INSERT INTO Orders VALUES(NULL, '5', '2', '0.00', 'delievered', DEFAULT, 'paypal', '201 Weston Place', 'London', 'New England', 'United Kingdom', 'EA59 3NB');
-INSERT INTO Orders VALUES(NULL, '6', '1', '0.00', 'delievered', DEFAULT, 'paypal', '78 Foxborough', 'London', 'New England', 'United Kingdom', 'EA6 9UN');
-INSERT INTO Orders VALUES(NULL, '7', '1', '0.00', 'delievered', DEFAULT, 'cash', '90 Mansion Palace',	'London', 'New England', 'United Kingdom', 'NM9 7SC');
-INSERT INTO Orders VALUES(NULL, '8', '3', '0.00', 'delievered', DEFAULT, 'paypal', '19 Old Street', 'London', 'New England', 'United Kingdom', 'LN2 5UN');
-INSERT INTO Orders VALUES(NULL, '9', '2', '0.00', 'delievered', DEFAULT, 'credit_card', '93 Stranford Road', 'Manchester', 'New England', 'United Kingdom', 'MC7 9CV');
-INSERT INTO Orders VALUES(NULL, '10', '2', '0.00', 'cancelled', DEFAULT, 'cash', '1 Anfield', 'Liverpool', 'New England', 'United Kingdom', 'LC1 4PB');
-
-SELECT * FROM Orders;
-
--- INSERT OrderItems
-INSERT INTO OrderItems VALUES(NULL, '1', '1', '2');
-INSERT INTO OrderItems VALUES(NULL, '2', '2', '1');
-INSERT INTO OrderItems VALUES(NULL, '3', '2', '3');
-INSERT INTO OrderItems VALUES(NULL, '4', '6', '5');
-INSERT INTO OrderItems VALUES(NULL, '5', '5', '1');
-INSERT INTO OrderItems VALUES(NULL, '6', '3', '1');
-INSERT INTO OrderItems VALUES(NULL, '7', '3', '4');
-INSERT INTO OrderItems VALUES(NULL, '8', '4', '3');
-INSERT INTO OrderItems VALUES(NULL, '9', '4', '1');
-INSERT INTO OrderItems VALUES(NULL, '10', '5', '2');
-INSERT INTO OrderItems VALUES(NULL, '10', '16', '1');
-INSERT INTO OrderItems VALUES(NULL, '4', '11', '2');
-INSERT INTO OrderItems VALUES(NULL, '6', '12', '4');
-
-SELECT * FROM OrderItems;
-
-
-
-
-
-
-
-
 SELECT 
     o.orderId, o.totalPrice, 
     CONCAT(c.firstName, ' ', c.lastName) AS Client,
