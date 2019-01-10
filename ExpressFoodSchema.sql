@@ -188,6 +188,14 @@ JOIN Clients c USING(clientId)
 JOIN Delivers d USING(deliverId)
 WHERE o.clientId = 1;
 
+SELECT oi.orderId, c.firstName, c.lastName, m.name, m.price, oi.quantity
+FROM OrderItems oi
+JOIN Menu m USING(itemId)
+JOIN Orders o USING(orderId)
+JOIN Clients c
+ON o.clientId = c.clientId
+WHERE orderId = 5;
+
 
 
 
@@ -202,23 +210,6 @@ JOIN Clients c USING(clientId)
 JOIN Delivers d USING(deliverId)
 JOIN Addresses a USING(AddressId)
 WHERE o.clientId = 1;
-
-SELECT 
-    o.orderId, o.totalPrice, 
-    CONCAT(c.firstName, ' ', c.lastName) AS Client,
-    CONCAT(d.firstName, ' ', d.lastName) AS Deliver
-FROM Orders o
-JOIN Clients c USING(clientId)
-JOIN Delivers d USING(deliverId)
-WHERE o.clientId = 1;
-
-SELECT oi.orderId, c.firstName, c.lastName, m.name, m.price, oi.quantity
-FROM OrderItems oi
-JOIN Menu m USING(itemId)
-JOIN Orders o USING(orderId)
-JOIN Clients c
-ON o.clientId = c.clientId
-WHERE orderId = 1;
 
 
 
