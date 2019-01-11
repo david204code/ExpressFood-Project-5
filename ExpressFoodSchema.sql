@@ -226,13 +226,30 @@ INSERT INTO Orders VALUES(NULL, '9', '2', '25.00', 'delievered', '2019-01-10', '
 INSERT INTO OrderItems VALUES(NULL, '9', '8', '4');
 INSERT INTO OrderItems VALUES(NULL, '9', '16', '2');
 
-
 INSERT INTO Orders VALUES(NULL, '10', '2', '20.00', 'cancelled', '2019-01-11', 'cash', '1 Anfield', 'Liverpool', 'New England', 'United Kingdom', 'LC1 4PB');
 INSERT INTO OrderItems VALUES(NULL, '10', '10', '4');
 
 INSERT INTO Orders VALUES(NULL, '5', '2', '17.00', 'delievered', '2019-01-11', 'credit_card', '201 Weston Place', 'London', 'New England', 'United Kingdom', 'EA59 3NB');
 INSERT INTO OrderItems VALUES(NULL, '5', '9', '2');
 INSERT INTO OrderItems VALUES(NULL, '5', '12', '2');
+
+-- List of Clients
+SELECT * FROM Clients;
+
+-- Daily menu
+SELECT * FROM Menu;
+
+-- List of Delievery people
+SELECT * FROM Delivers;
+
+-- order history for each client
+SELECT OrderItems.orderId, Orders.date, Clients.firstName, Clients.lastName, Orders.orderPrice
+FROM OrderItems 
+JOIN Menu USING(itemId)
+JOIN Orders USING(orderId)
+JOIN Clients 
+ON Orders.clientId = Clients.clientId
+WHERE Clients.clientId = 5;
 
 --Working queries
 SELECT 
