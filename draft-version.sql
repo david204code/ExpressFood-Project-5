@@ -286,7 +286,6 @@ WHERE o.clientId = 1;
 
 //Submitted but not approve
 
-
 DROP TABLE IF EXISTS Addresses;
 DROP TABLE IF EXISTS OrderItems;
 DROP TABLE IF EXISTS Orders;
@@ -333,7 +332,7 @@ CREATE TABLE Orders (
   deliverId INT,
   orderPrice FLOAT(4,2),
   status ENUM('delievered', 'cancelled'),
-  date DATETIME,
+  date DATE,
   paymentMethod ENUM('cash', 'paypal', 'credit_card'),
   address VARCHAR(50),
   city VARCHAR(50),
@@ -411,8 +410,8 @@ INSERT INTO Menu VALUES(NULL, 'Main', 'Fresh Pasta Salad', 'Pasta, Tomatos, Cucu
 INSERT INTO Menu VALUES(NULL, 'Main', 'Chicken Salad', 'Cooked Chicken, Onions, Sweet Corn, Carrots', '6.00');
 INSERT INTO Menu VALUES(NULL, 'Main', 'Potato Salad', 'Onion, Celery, Egg, Potato', '5.00');
 INSERT INTO Menu VALUES(NULL, 'Main', 'Tuna Sandwich', 'Tuna, Whole Wheat Bread, Mayo, Sweet Corn', '5.00');
-INSERT INTO Menu VALUES(NULL, 'Main', 'Avocado Tuna Salad',	'Tuna, Avocado, Lettuce, Onions', '6.00');
-INSERT INTO Menu VALUES(NULL, 'Main', 'Egg Mayo Sandwich', 'Whole Wheat Bread, Egg, Mayo', '5.00');
+INSERT INTO Menu VALUES(NULL, 'Main', 'Avocado Tuna Salad',	'Tuna, Avocado, Lettuce, Onions', '6');
+INSERT INTO Menu VALUES(NULL, 'Main', 'Egg Mayo Sandwich', 'Whole Wheat Bread, Egg, Mayo', '5');
 INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Chocolate Pudding', '2.50');
 INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Stawberry Cheesecake', '2.50');
 INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Rasberry Pudding', '2.50');
@@ -422,7 +421,11 @@ INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Chocolate C
 
 SELECT * FROM Menu;
 
--- Correct query result
+DESCRIBE Orders;
+SELECT * FROM Orders;
+DESCRIBE OrderItems;
+SELECT * FROM OrderItems;
+
 INSERT INTO Orders VALUES(NULL, '1', '1', '16.00', 'delievered', '2019-01-05', 'paypal', '101 College Hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
 INSERT INTO OrderItems VALUES(NULL, '1', '1', '2');
 INSERT INTO Orders VALUES(NULL, '1', '1', '7.50', 'delievered', '2019-01-05', 'paypal', '101 College Hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
@@ -476,6 +479,7 @@ INSERT INTO OrderItems VALUES(NULL, '20', '9', '2');
 INSERT INTO Orders VALUES(NULL, '5', '2', '5.00', 'delievered', '2019-01-11', 'credit_card', '201 Weston Place', 'London', 'New England', 'United Kingdom', 'EA59 3NB');
 INSERT INTO OrderItems VALUES(NULL, '21', '12', '2'); 
 
+
 -- List of Clients
 SELECT * FROM Clients;
 
@@ -485,6 +489,8 @@ SELECT * FROM Menu;
 -- List of Delievery people
 SELECT * FROM Delivers;
 
+SELECT * FROM Orders;
+
 -- order history for each client
 SELECT OrderItems.orderId, Orders.date, Clients.firstName, Clients.lastName, Orders.orderPrice
 FROM OrderItems 
@@ -493,4 +499,128 @@ JOIN Orders USING(orderId)
 JOIN Clients 
 ON Orders.clientId = Clients.clientId
 WHERE Clients.clientId = 5;
+
+
+-- Practice
+SELECT OrderItems.orderId, Clients.firstName, Clients.lastName, Menu.name, Menu.price, OrderItems.quantity
+FROM OrderItems 
+JOIN Menu USING (itemId)
+JOIN Orders USING(orderId)
+JOIN Clients 
+ON Orders.clientId = Clients.clientId
+WHERE orderId >= 1;
+
+
+SELECT oi.orderId, c.firstName, c.lastName, m.name, m.price, oi.quantity
+FROM OrderItems oi
+JOIN Menu m USING(itemId)
+JOIN Orders o USING(orderId)
+JOIN Clients c
+ON o.clientId = c.clientId
+WHERE orderId >= 16;
+
+SELECT * FROM Clients
+WHERE clientID LIKE '2';
+
+SELECT Addresses.addressId, Addresses.city
+FROM Addresses
+WHERE addressId >= 1
+ORDER BY addressId DESC
+LIMIT 3;
+
+SELECT * FROM Addresses; 
+SELECT * FROM OrderItems;
+SELECT * FROM Menu;
+SELECT * FROM Delivers;
+SELECT * FROM Orders;
+
+SELECT * FROM Orders
+WHERE date LIKE "2019-01-05";
+
+
+-- Working
+SELECT 
+    o.orderId, o.orderPrice, 
+    CONCAT(c.firstName, ' ', c.lastName) AS Client,
+    CONCAT(d.firstName, ' ', d.lastName) AS Deliver
+FROM Orders o
+JOIN Clients c USING(clientId)
+JOIN Delivers d USING(deliverId)
+WHERE o.clientId = 1;
+
+SELECT oi.orderId, c.firstName, c.lastName, m.name, m.price, oi.quantity
+FROM OrderItems oi
+JOIN Menu m USING(itemId)
+JOIN Orders o USING(orderId)
+JOIN Clients c
+ON o.clientId = c.clientId
+WHERE orderId >= 1;
+
+
+
+
+
+SELECT 
+    o.orderId, o.orderPrice, 
+    CONCAT(c.firstName, ' ', c.lastName) AS Client,
+    CONCAT(d.firstName, ' ', d.lastName) AS Deliver
+FROM Orders o
+JOIN Clients c USING(clientId)
+JOIN Delivers d USING(deliverId)
+WHERE o.clientId = 1;
+
+SELECT 
+    o.orderId, o.orderPrice, 
+    CONCAT(c.firstName, ' ', c.lastName) AS Client,
+    CONCAT(d.firstName, ' ', d.lastName) AS Deliver
+FROM Orders o
+JOIN Clients c ON o.clientId = c.clientId
+JOIN Delivers d ON d.deliverId = o.deliverId
+WHERE o.clientId = 1;
+
+/*
+INSERT INTO Orders VALUES(NULL, '1', '1', '23.50', 'delievered', '2019-01-05', 'paypal', '101 College Hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
+INSERT INTO OrderItems VALUES(NULL, '1', '1', '2');
+INSERT INTO OrderItems VALUES(NULL, '1', '11', '3');
+
+INSERT INTO Orders VALUES(NULL, '2', '2', '10.50', 'delievered', '2019-01-05', 'cash', '94 Hilltop Road', 'London', 'New England', 'United Kingdom', 'SW12 7EA');
+INSERT INTO OrderItems VALUES(NULL, '2', '2', '1');
+INSERT INTO OrderItems VALUES(NULL, '2', '12', '1');
+
+INSERT INTO Orders VALUES(NULL, '3', '3', '18.50', 'cancelled', '2019-01-05', 'credit_card', '18 Newbury Drive', 'London', 'New England', 'United Kingdom', 'SW16 9PO');
+INSERT INTO OrderItems VALUES(NULL, '3', '1', '2');
+INSERT INTO OrderItems VALUES(NULL, '3', '12', '1');
+
+INSERT INTO Orders VALUES(NULL, '4', '3', '39.00', 'delievered', '2019-01-07', 'credit_card', '1246 Riverside Road', 'London', 'New England', 'United Kingdom', 'N12 3EL');
+INSERT INTO OrderItems VALUES(NULL, '4', '3', '4');
+INSERT INTO OrderItems VALUES(NULL, '4', '14', '6');
+
+INSERT INTO Orders VALUES(NULL, '5', '2', '13.00', 'delievered', '2019-01-07', 'paypal', '201 Weston Place', 'London', 'New England', 'United Kingdom', 'EA59 3NB');
+INSERT INTO OrderItems VALUES(NULL, '5', '4', '1');
+INSERT INTO OrderItems VALUES(NULL, '5', '13', '2');
+
+INSERT INTO Orders VALUES(NULL, '6', '1', '33.00', 'delievered', '2019-01-08', 'paypal', '78 Foxborough', 'London', 'New England', 'United Kingdom', 'EA6 9UN');
+INSERT INTO OrderItems VALUES(NULL, '6', '5', '4');
+INSERT INTO OrderItems VALUES(NULL, '6', '15', '4');
+
+INSERT INTO Orders VALUES(NULL, '7', '1', '11.00', 'delievered', '2019-01-08', 'cash', '90 Mansion Palace',	'London', 'New England', 'United Kingdom', 'NM9 7SC');
+INSERT INTO OrderItems VALUES(NULL, '7', '6', '1');
+INSERT INTO OrderItems VALUES(NULL, '7', '16', '2');
+
+INSERT INTO Orders VALUES(NULL, '8', '3', '10.00', 'delievered', '2019-01-10', 'paypal', '19 Old Street', 'London', 'New England', 'United Kingdom', 'LN2 5UN');
+INSERT INTO OrderItems VALUES(NULL, '8', '7', '1');
+INSERT INTO OrderItems VALUES(NULL, '8', '14', '2');
+
+INSERT INTO Orders VALUES(NULL, '9', '2', '25.00', 'delievered', '2019-01-10', 'credit_card', '93 Stranford Road', 'Manchester', 'New England', 'United Kingdom', 'MC7 9CV');
+INSERT INTO OrderItems VALUES(NULL, '9', '8', '4');
+INSERT INTO OrderItems VALUES(NULL, '9', '16', '2');
+
+
+INSERT INTO Orders VALUES(NULL, '10', '2', '20.00', 'cancelled', '2019-01-11', 'cash', '1 Anfield', 'Liverpool', 'New England', 'United Kingdom', 'LC1 4PB');
+INSERT INTO OrderItems VALUES(NULL, '10', '10', '4');
+
+INSERT INTO Orders VALUES(NULL, '5', '2', '17.00', 'delievered', '2019-01-11', 'credit_card', '201 Weston Place', 'London', 'New England', 'United Kingdom', 'EA59 3NB');
+INSERT INTO OrderItems VALUES(NULL, '5', '9', '2');
+INSERT INTO OrderItems VALUES(NULL, '5', '12', '2'); 
+*/;
 
