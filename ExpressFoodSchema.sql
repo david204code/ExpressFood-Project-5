@@ -9,26 +9,13 @@ DROP TABLE IF EXISTS Menu;
 
 CREATE TABLE Clients (
   clientId INT PRIMARY KEY AUTO_INCREMENT,
-  firstName VARCHAR(20) NOT NULL,
-  lastName VARCHAR(20) NOT NULL,
+  firstName VARCHAR(50) NOT NULL,
+  lastName VARCHAR(50) NOT NULL,
   email VARCHAR(50),
   phone VARCHAR(20) NOT NULL
 );
 
 DESCRIBE Clients;
-
-CREATE TABLE Addresses (
-  addressId INT PRIMARY KEY AUTO_INCREMENT,
-  address VARCHAR(50),
-  city VARCHAR(50),
-  state VARCHAR(40),
-  country VARCHAR(40),
-  postCode VARCHAR(8),
-  clientId INT,
-  FOREIGN KEY (clientId) REFERENCES Clients(clientId)
-);
-
-DESCRIBE Addresses;
 
 CREATE TABLE Delivers (
   deliverId INT PRIMARY KEY AUTO_INCREMENT,
