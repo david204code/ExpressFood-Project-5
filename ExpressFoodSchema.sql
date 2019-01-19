@@ -17,6 +17,19 @@ CREATE TABLE Clients (
 
 DESCRIBE Clients;
 
+CREATE TABLE Addresses (
+  addressId INT PRIMARY KEY AUTO_INCREMENT,
+  address VARCHAR(50),
+  city VARCHAR(50),
+  state VARCHAR(40),
+  country VARCHAR(40),
+  postCode VARCHAR(8),
+  clientId INT,
+  FOREIGN KEY (clientId) REFERENCES Clients(clientId)
+);
+
+DESCRIBE Addresses;
+
 CREATE TABLE Delivers (
   deliverId INT PRIMARY KEY AUTO_INCREMENT,
   firstName VARCHAR(20),
@@ -34,11 +47,6 @@ CREATE TABLE Orders (
   status ENUM('delievered', 'cancelled'),
   date DATETIME,
   paymentMethod ENUM('cash', 'paypal', 'credit_card'),
-  address VARCHAR(50),
-  city VARCHAR(50),
-  state VARCHAR(40),
-  country VARCHAR(40),
-  postCode VARCHAR(8),
   FOREIGN KEY (clientId) REFERENCES Clients(clientId),
   FOREIGN KEY (deliverId) REFERENCES Delivers(deliverId)
 );
