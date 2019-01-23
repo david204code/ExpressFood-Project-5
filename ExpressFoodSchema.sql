@@ -150,6 +150,14 @@ INSERT INTO DailyMenu VALUES(NULL, '11', 'Sunday');
 
 SELECT * FROM DailyMenu;
 
+-- Round 2 
+-- INSERT OrderItems
+INSERT INTO OrderItems VALUES(NULL, '1', '1', '2'); 
+INSERT INTO Orders VALUES(NULL, '1', '1', '1', '16.00', 'delievered', '2019-01-07', 'paypal', '101 College Hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
+INSERT INTO OrderItems VALUES(NULL, '1', '11', '3');
+INSERT INTO Orders VALUES(NULL, '1', '1', '1', '7.50', 'delievered', '2019-01-07', 'paypal', '101 College Hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
+
+
 -- Correct query result
 INSERT INTO Orders VALUES(NULL, '1', '1', '16.00', 'delievered', '2019-01-05', 'paypal', '101 College Hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
 INSERT INTO OrderItems VALUES(NULL, '1', '1', '2');
