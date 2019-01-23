@@ -1,7 +1,6 @@
 DROP TABLE IF EXISTS Orders;
 DROP TABLE IF EXISTS OrderItems;
 DROP TABLE IF EXISTS DailyMenu;
-DROP TABLE IF EXISTS Addresses;
 DROP TABLE IF EXISTS Clients;
 DROP TABLE IF EXISTS Delivers;
 DROP TABLE IF EXISTS AllMenu;
@@ -17,19 +16,6 @@ CREATE TABLE Clients (
 );
 
 DESCRIBE Clients;
-
-CREATE TABLE Addresses (
-  addressId INT PRIMARY KEY AUTO_INCREMENT,
-  address VARCHAR(50),
-  city VARCHAR(50),
-  state VARCHAR(40),
-  country VARCHAR(40),
-  postCode VARCHAR(8),
-  clientId INT,
-  FOREIGN KEY (clientId) REFERENCES Clients(clientId)
-);
-
-DESCRIBE Addresses;
 
 CREATE TABLE Delivers (
   deliverId INT PRIMARY KEY AUTO_INCREMENT,
@@ -72,15 +58,18 @@ DESCRIBE OrderItems;
 CREATE TABLE Orders (
   ordersId INT PRIMARY KEY AUTO_INCREMENT,
   clientId INT,
-  addressId INT,
   deliverId INT,
   orderItemId INT,
   orderPrice FLOAT(4,2),
   status ENUM('delievered', 'cancelled'),
   date DATE,
   paymentMethod ENUM('cash', 'paypal', 'credit_card'),
+  address VARCHAR(50),
+  city VARCHAR(50),
+  state VARCHAR(40),
+  country VARCHAR(40),
+  postCode VARCHAR(8),
   FOREIGN KEY (clientId) REFERENCES Clients(clientId),
-  FOREIGN KEY (addressId) REFERENCES Addresses(addressId),
   FOREIGN KEY (deliverId) REFERENCES  Delivers(deliverId),
   FOREIGN KEY (orderItemId) REFERENCES  OrderItems(orderItemId)
 );
