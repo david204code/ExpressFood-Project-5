@@ -118,6 +118,38 @@ INSERT INTO AllMenu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Chocolat
 
 SELECT * FROM AllMenu;
 
+-- INSERT DailyMenu
+INSERT INTO DailyMenu VALUES(NULL, '1', 'Monday');
+INSERT INTO DailyMenu VALUES(NULL, '2', 'Monday');
+INSERT INTO DailyMenu VALUES(NULL, '10', 'Monday');
+INSERT INTO DailyMenu VALUES(NULL, '11', 'Monday');
+INSERT INTO DailyMenu VALUES(NULL, '3', 'Tuesday');
+INSERT INTO DailyMenu VALUES(NULL, '4', 'Tuesday');
+INSERT INTO DailyMenu VALUES(NULL, '12', 'Tuesday');
+INSERT INTO DailyMenu VALUES(NULL, '13', 'Tuesday');
+INSERT INTO DailyMenu VALUES(NULL, '5', 'Wednesday');
+INSERT INTO DailyMenu VALUES(NULL, '6', 'Wednesday');
+INSERT INTO DailyMenu VALUES(NULL, '14', 'Wednesday');
+INSERT INTO DailyMenu VALUES(NULL, '15', 'Wednesday');
+INSERT INTO DailyMenu VALUES(NULL, '7', 'Thursday');
+INSERT INTO DailyMenu VALUES(NULL, '8', 'Thursday');
+INSERT INTO DailyMenu VALUES(NULL, '15', 'Thursday');
+INSERT INTO DailyMenu VALUES(NULL, '14', 'Thursday');
+INSERT INTO DailyMenu VALUES(NULL, '1', 'Friday');
+INSERT INTO DailyMenu VALUES(NULL, '3', 'Friday');
+INSERT INTO DailyMenu VALUES(NULL, '10', 'Friday');
+INSERT INTO DailyMenu VALUES(NULL, '12', 'Friday');
+INSERT INTO DailyMenu VALUES(NULL, '2', 'Saturday');
+INSERT INTO DailyMenu VALUES(NULL, '4', 'Saturday');
+INSERT INTO DailyMenu VALUES(NULL, '11', 'Saturday');
+INSERT INTO DailyMenu VALUES(NULL, '13', 'Saturday');
+INSERT INTO DailyMenu VALUES(NULL, '5', 'Sunday');
+INSERT INTO DailyMenu VALUES(NULL, '7', 'Sunday');
+INSERT INTO DailyMenu VALUES(NULL, '10', 'Sunday');
+INSERT INTO DailyMenu VALUES(NULL, '11', 'Sunday');
+
+SELECT * FROM DailyMenu;
+
 -- Correct query result
 INSERT INTO Orders VALUES(NULL, '1', '1', '16.00', 'delievered', '2019-01-05', 'paypal', '101 College Hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
 INSERT INTO OrderItems VALUES(NULL, '1', '1', '2');
