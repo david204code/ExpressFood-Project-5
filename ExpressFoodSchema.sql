@@ -39,6 +39,7 @@ DESCRIBE AllMenu;
 CREATE TABLE DailyMenu (
     dailyMenuId INT PRIMARY KEY AUTO_INCREMENT,
     itemId INT,
+    day ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'),
     FOREIGN KEY (itemId) REFERENCES AllMenu(itemId)
 );
 
@@ -91,20 +92,6 @@ INSERT INTO Clients VALUES(NULL, 'Michael', 'Owen', 'owenEngland@hotmail.com', '
 
 SELECT * FROM Clients;
 
--- INSERT ADDRESSES
-INSERT INTO Addresses VALUES(NULL, '101 College Hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP', '1');
-INSERT INTO Addresses VALUES(NULL, '94 Hilltop Road', 'London', 'New England', 'United Kingdom', 'SW12 7EA', '2');
-INSERT INTO Addresses VALUES(NULL, '18 Newbury Drive', 'London', 'New England', 'United Kingdom', 'SW16 9PO', '3');
-INSERT INTO Addresses VALUES(NULL, '1246 Riverside Road', 'London', 'New England', 'United Kingdom', 'N12 3EL', '4');
-INSERT INTO Addresses VALUES(NULL, '201 Weston Place', 'London', 'New England', 'United Kingdom', 'EA59 3NB', '5');
-INSERT INTO Addresses VALUES(NULL, '78 Foxborough', 'London', 'New England', 'United Kingdom', 'EA6 9UN', '6');
-INSERT INTO Addresses VALUES(NULL, '90 Mansion Palace',	'London', 'New England', 'United Kingdom', 'NM9 7SC', '7');
-INSERT INTO Addresses VALUES(NULL, '19 Old Street', 'London', 'New England', 'United Kingdom', 'LN2 5UN', '8');
-INSERT INTO Addresses VALUES(NULL, '93 Stranford Road', 'Manchester', 'New England', 'United Kingdom', 'MC7 9CV', '9');
-INSERT INTO Addresses VALUES(NULL, '1 Anfield', 'Liverpool', 'New England', 'United Kingdom', 'LC1 4PB', '10');
-
-SELECT * FROM Addresses;
-
 -- INSERT Delievers
 INSERT INTO Delivers VALUES(NULL, 'Jack', 'Bauer', '9853983399');
 INSERT INTO Delivers VALUES(NULL, 'Joe', 'Martial', '9865236916');
@@ -112,25 +99,24 @@ INSERT INTO Delivers VALUES(NULL, 'Marvel', 'Jones', '9652149635');
 
 SELECT * FROM Delivers;
 
--- INSERT Menu
-INSERT INTO Menu VALUES(NULL, 'Main', 'Sushi Box Set A', 'Tiger Rolls, Philadephia Rolls, Sake(salmon)', '8.00');
-INSERT INTO Menu VALUES(NULL, 'Main', 'Sushi Box Set B', 'Sashimis, Rainbow Rolls, Sake(salmon)', '8.00');
-INSERT INTO Menu VALUES(NULL, 'Main', 'Sushi Box Set C', 'Spicy Tuna Rolls, Tiger Rolls, Ebi', '8.00');
-INSERT INTO Menu Values(NULL, 'Main', 'Sushi Box Set D', 'Dynamite Rolls, Dragon Rolls, Ahi', '8.00');
-INSERT INTO Menu VALUES(NULL, 'Main', 'Fresh Pasta Salad', 'Pasta, Tomatos, Cucumber, Cheese, Sweet Corn', '7.00');
-INSERT INTO Menu VALUES(NULL, 'Main', 'Chicken Salad', 'Cooked Chicken, Onions, Sweet Corn, Carrots', '6.00');
-INSERT INTO Menu VALUES(NULL, 'Main', 'Potato Salad', 'Onion, Celery, Egg, Potato', '5.00');
-INSERT INTO Menu VALUES(NULL, 'Main', 'Tuna Sandwich', 'Tuna, Whole Wheat Bread, Mayo, Sweet Corn', '5.00');
-INSERT INTO Menu VALUES(NULL, 'Main', 'Avocado Tuna Salad',	'Tuna, Avocado, Lettuce, Onions', '6.00');
-INSERT INTO Menu VALUES(NULL, 'Main', 'Egg Mayo Sandwich', 'Whole Wheat Bread, Egg, Mayo', '5.00');
-INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Chocolate Pudding', '2.50');
-INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Stawberry Cheesecake', '2.50');
-INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Rasberry Pudding', '2.50');
-INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Chocolate Cake', '2.50');
-INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Chocolate Muffins', '2.50');
-INSERT INTO Menu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Chocolate Chip Cookie', '2.50');
+-- INSERT AllMenu
+INSERT INTO AllMenu VALUES(NULL, 'Main', 'Sushi Box Set A', 'Tiger Rolls, Philadephia Rolls, Sake(salmon)', '8.00');
+INSERT INTO AllMenu VALUES(NULL, 'Main', 'Sushi Box Set B', 'Sashimis, Rainbow Rolls, Sake(salmon)', '8.00');
+INSERT INTO AllMenu VALUES(NULL, 'Main', 'Sushi Box Set C', 'Spicy Tuna Rolls, Tiger Rolls, Ebi', '8.00');
+INSERT INTO AllMenu VALUES(NULL, 'Main', 'Fresh Pasta Salad', 'Pasta, Tomatos, Cucumber, Cheese, Sweet Corn', '7.00');
+INSERT INTO AllMenu VALUES(NULL, 'Main', 'Chicken Salad', 'Cooked Chicken, Onions, Sweet Corn, Carrots', '6.00');
+INSERT INTO AllMenu VALUES(NULL, 'Main', 'Potato Salad', 'Onion, Celery, Egg, Potato', '5.00');
+INSERT INTO AllMenu VALUES(NULL, 'Main', 'Tuna Sandwich', 'Tuna, Whole Wheat Bread, Mayo, Sweet Corn', '5.00');
+INSERT INTO AllMenu VALUES(NULL, 'Main', 'Avocado Tuna Salad',	'Tuna, Avocado, Lettuce, Onions', '6.00');
+INSERT INTO AllMenu VALUES(NULL, 'Main', 'Egg Mayo Sandwich', 'Whole Wheat Bread, Egg, Mayo', '5.00');
+INSERT INTO AllMenu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Chocolate Pudding', '2.50');
+INSERT INTO AllMenu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Stawberry Cheesecake', '2.50');
+INSERT INTO AllMenu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Rasberry Pudding', '2.50');
+INSERT INTO AllMenu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Chocolate Cake', '2.50');
+INSERT INTO AllMenu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Chocolate Muffins', '2.50');
+INSERT INTO AllMenu(itemId, type, name, price) VALUES(NULL, 'Dessert', 'Chocolate Chip Cookie', '2.50');
 
-SELECT * FROM Menu;
+SELECT * FROM AllMenu;
 
 -- Correct query result
 INSERT INTO Orders VALUES(NULL, '1', '1', '16.00', 'delievered', '2019-01-05', 'paypal', '101 College Hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
