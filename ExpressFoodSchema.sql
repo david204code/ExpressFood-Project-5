@@ -1,11 +1,12 @@
-
-DROP TABLE IF EXISTS Addresses;
-DROP TABLE IF EXISTS OrderItems;
 DROP TABLE IF EXISTS Orders;
+DROP TABLE IF EXISTS OrderItems;
+DROP TABLE IF EXISTS DailyMenu;
+DROP TABLE IF EXISTS Addresses;
 DROP TABLE IF EXISTS Clients;
 DROP TABLE IF EXISTS Delivers;
-DROP TABLE IF EXISTS Menu;
+DROP TABLE IF EXISTS AllMenu;
 
+SHOW TABLES;
 
 CREATE TABLE Clients (
   clientId INT PRIMARY KEY AUTO_INCREMENT,
@@ -39,40 +40,53 @@ CREATE TABLE Delivers (
 
 DESCRIBE Delivers;
 
+CREATE TABLE AllMenu (
+    itemId INT PRIMARY KEY AUTO_INCREMENT,
+    type ENUM('Main', 'Dessert'),
+    name VARCHAR(100),
+    description VARCHAR(100),
+    price FLOAT(4,2)
+);
+
+DESCRIBE AllMenu;
+
+CREATE TABLE DailyMenu (
+    dailyMenuId INT PRIMARY KEY AUTO_INCREMENT,
+    itemId INT,
+    FOREIGN KEY (itemId) REFERENCES AllMenu(itemId)
+);
+
+DESCRIBE DailyMenu;
+
+CREATE TABLE OrderItems (
+    orderItemId INT PRIMARY KEY AUTO_INCREMENT,
+    clientId INT,
+    itemId INT,
+    quantity INT,
+    FOREIGN KEY (itemId) REFERENCES DailyMenu(itemId),
+    FOREIGN KEY (clientId) REFERENCES Clients(clientId)
+);
+
+DESCRIBE OrderItems;
+
 CREATE TABLE Orders (
-  orderId INT PRIMARY KEY AUTO_INCREMENT,
+  ordersId INT PRIMARY KEY AUTO_INCREMENT,
   clientId INT,
+  addressId INT,
   deliverId INT,
+  orderItemId INT,
   orderPrice FLOAT(4,2),
   status ENUM('delievered', 'cancelled'),
-  date DATETIME,
+  date DATE,
   paymentMethod ENUM('cash', 'paypal', 'credit_card'),
   FOREIGN KEY (clientId) REFERENCES Clients(clientId),
-  FOREIGN KEY (deliverId) REFERENCES Delivers(deliverId)
+  FOREIGN KEY (addressId) REFERENCES Addresses(addressId),
+  FOREIGN KEY (deliverId) REFERENCES  Delivers(deliverId),
+  FOREIGN KEY (orderItemId) REFERENCES  OrderItems(orderItemId)
 );
 
 DESCRIBE Orders;
 
-CREATE TABLE Menu (
-    itemId INT PRIMARY KEY AUTO_INCREMENT,
-    type ENUM('Main', 'Dessert'),
-    name VARCHAR(100),
-    description VARCHAR(100) DEFAULT(''),
-    price FLOAT(4,2)
-);
-
-DESCRIBE Menu;
-
-CREATE TABLE OrderItems (
-    orderItemId INT PRIMARY KEY AUTO_INCREMENT,
-    orderId INT,
-    itemId INT,
-    quantity INT,
-    FOREIGN KEY (orderId) REFERENCES Orders(orderId),
-    FOREIGN KEY (itemId) REFERENCES Menu(itemId)
-);
-
-DESCRIBE OrderItems;
 
 -- INSERT CLIENTS
 INSERT INTO Clients VALUES(NULL, 'David', 'Beckham', 'becksdavid7@gmail.com', '9086897258');
