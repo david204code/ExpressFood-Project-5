@@ -1,13 +1,13 @@
 DROP TABLE IF EXISTS Orders;
-DROP TABLE IF EXISTS OrderItems;
+DROP TABLE IF EXISTS OrderItem;
 DROP TABLE IF EXISTS DailyMenu;
-DROP TABLE IF EXISTS Clients;
-DROP TABLE IF EXISTS Delivers;
+DROP TABLE IF EXISTS Client;
+DROP TABLE IF EXISTS Driver;
 DROP TABLE IF EXISTS AllMenu;
 
 SHOW TABLES;
 
-CREATE TABLE Clients (
+CREATE TABLE Client (
   clientId INT PRIMARY KEY AUTO_INCREMENT,
   firstName VARCHAR(50) NOT NULL,
   lastName VARCHAR(50) NOT NULL,
@@ -15,16 +15,16 @@ CREATE TABLE Clients (
   phone VARCHAR(20) NOT NULL
 );
 
-DESCRIBE Clients;
+-- DESCRIBE Client;
 
-CREATE TABLE Delivers (
-  deliverId INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE Driver (
+  driverId INT PRIMARY KEY AUTO_INCREMENT,
   firstName VARCHAR(20),
   lastName VARCHAR(20),
   phone VARCHAR(20)
 );
 
-DESCRIBE Delivers;
+-- DESCRIBE Driver;
 
 CREATE TABLE AllMenu (
     itemId INT PRIMARY KEY AUTO_INCREMENT,
@@ -34,7 +34,7 @@ CREATE TABLE AllMenu (
     price FLOAT(4,2)
 );
 
-DESCRIBE AllMenu;
+-- DESCRIBE AllMenu;
 
 CREATE TABLE DailyMenu (
     dailyMenuId INT PRIMARY KEY AUTO_INCREMENT,
@@ -43,23 +43,23 @@ CREATE TABLE DailyMenu (
     FOREIGN KEY (itemId) REFERENCES AllMenu(itemId)
 );
 
-DESCRIBE DailyMenu;
+-- DESCRIBE DailyMenu;
 
-CREATE TABLE OrderItems (
+CREATE TABLE OrderItem (
     orderItemId INT PRIMARY KEY AUTO_INCREMENT,
     clientId INT,
     itemId INT,
     quantity INT,
     FOREIGN KEY (itemId) REFERENCES DailyMenu(itemId),
-    FOREIGN KEY (clientId) REFERENCES Clients(clientId)
+    FOREIGN KEY (clientId) REFERENCES Client(clientId)
 );
 
-DESCRIBE OrderItems;
+-- DESCRIBE OrderItem;
 
 CREATE TABLE Orders (
   ordersId INT PRIMARY KEY AUTO_INCREMENT,
   clientId INT,
-  deliverId INT,
+  driverId INT,
   orderItemId INT,
   orderPrice FLOAT(4,2),
   status ENUM('delievered', 'cancelled'),
@@ -70,34 +70,33 @@ CREATE TABLE Orders (
   state VARCHAR(40),
   country VARCHAR(40),
   postCode VARCHAR(8),
-  FOREIGN KEY (clientId) REFERENCES Clients(clientId),
-  FOREIGN KEY (deliverId) REFERENCES  Delivers(deliverId),
-  FOREIGN KEY (orderItemId) REFERENCES  OrderItems(orderItemId)
+  FOREIGN KEY (clientId) REFERENCES Client(clientId),
+  FOREIGN KEY (driverId) REFERENCES  Driver(driverId),
+  FOREIGN KEY (orderItemId) REFERENCES  OrderItem(orderItemId)
 );
 
-DESCRIBE Orders;
+-- DESCRIBE Orders;
 
+-- INSERT CLIENT
+INSERT INTO Client VALUES(NULL, 'David', 'Beckham', 'becksdavid7@gmail.com', '9086897258');
+INSERT INTO Client VALUES(NULL, 'Lionel', 'Messi', 'messi10@gmail.com', '9973833810');
+INSERT INTO Client VALUES(NULL, 'David', 'Luiz', 'davidluiz@gmail.com', '9698713028');
+INSERT INTO Client VALUES(NULL, 'Jose', 'Mourinho', 'specialone@hotmail.com', '9823912069');
+INSERT INTO Client VALUES(NULL, 'Cristiano', 'Ronaldo', 'cr7ronaldo@gmail.com', '9863021687');
+INSERT INTO Client VALUES(NULL, 'Toni', 'Kross', 'krossworldcup@hotmail.com', '9678930263');
+INSERT INTO Client VALUES(NULL, 'Luka', 'Modric', 'lukagolden@hotmail.com', '9513694713');
+INSERT INTO Client VALUES(NULL, 'Aaron', 'Ramsey', 'rambo@hotmail.com', '9987133972');
+INSERT INTO Client VALUES(NULL, 'Alexis', 'Sanchez', 'alexis7@gmail.com', '9971391339');
+INSERT INTO Client VALUES(NULL, 'Michael', 'Owen', 'owenEngland@hotmail.com', '9541486346');
 
--- INSERT CLIENTS
-INSERT INTO Clients VALUES(NULL, 'David', 'Beckham', 'becksdavid7@gmail.com', '9086897258');
-INSERT INTO Clients VALUES(NULL, 'Lionel', 'Messi', 'messi10@gmail.com', '9973833810');
-INSERT INTO Clients VALUES(NULL, 'David', 'Luiz', 'davidluiz@gmail.com', '9698713028');
-INSERT INTO Clients VALUES(NULL, 'Jose', 'Mourinho', 'specialone@hotmail.com', '9823912069');
-INSERT INTO Clients VALUES(NULL, 'Cristiano', 'Ronaldo', 'cr7ronaldo@gmail.com', '9863021687');
-INSERT INTO Clients VALUES(NULL, 'Toni', 'Kross', 'krossworldcup@hotmail.com', '9678930263');
-INSERT INTO Clients VALUES(NULL, 'Luka', 'Modric', 'lukagolden@hotmail.com', '9513694713');
-INSERT INTO Clients VALUES(NULL, 'Aaron', 'Ramsey', 'rambo@hotmail.com', '9987133972');
-INSERT INTO Clients VALUES(NULL, 'Alexis', 'Sanchez', 'alexis7@gmail.com', '9971391339');
-INSERT INTO Clients VALUES(NULL, 'Michael', 'Owen', 'owenEngland@hotmail.com', '9541486346');
+SELECT * FROM Client;
 
-SELECT * FROM Clients;
+-- INSERT Driver
+INSERT INTO Driver VALUES(NULL, 'Jack', 'Bauer', '9853983399');
+INSERT INTO Driver VALUES(NULL, 'Joe', 'Martial', '9865236916');
+INSERT INTO Driver VALUES(NULL, 'Marvel', 'Jones', '9652149635');
 
--- INSERT Delievers
-INSERT INTO Delivers VALUES(NULL, 'Jack', 'Bauer', '9853983399');
-INSERT INTO Delivers VALUES(NULL, 'Joe', 'Martial', '9865236916');
-INSERT INTO Delivers VALUES(NULL, 'Marvel', 'Jones', '9652149635');
-
-SELECT * FROM Delivers;
+SELECT * FROM Driver;
 
 -- INSERT AllMenu
 INSERT INTO AllMenu VALUES(NULL, 'Main', 'Sushi Box Set A', 'Tiger Rolls, Philadephia Rolls, Sake(salmon)', '8.00');
@@ -152,83 +151,91 @@ SELECT * FROM DailyMenu;
 
 -- Round 2 
 -- INSERT OrderItems
-INSERT INTO OrderItems VALUES(NULL, '1', '1', '2'); 
+INSERT INTO OrderItem VALUES(NULL, '1', '1', '2'); 
 INSERT INTO Orders VALUES(NULL, '1', '1', '1', '16.00', 'delievered', '2019-01-07', 'paypal', '101 College Hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
-INSERT INTO OrderItems VALUES(NULL, '1', '11', '3');
-INSERT INTO Orders VALUES(NULL, '1', '1', '1', '7.50', 'delievered', '2019-01-07', 'paypal', '101 College Hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
+INSERT INTO OrderItem VALUES(NULL, '1', '11', '3');
+INSERT INTO Orders VALUES(NULL, '1', '1', '2', '7.50', 'delievered', '2019-01-07', 'paypal', '101 College Hill', 'London', 'New England', 'United Kingdom', 'SW13 5YP');
 
-INSERT INTO OrderItems VALUES(NULL, '2', '2', '1');
+INSERT INTO OrderItem VALUES(NULL, '2', '2', '1');
 INSERT INTO Orders VALUES(NULL, '2', '2', '3', '8.00', 'delievered', '2019-01-07', 'cash', '94 Hilltop Road', 'London', 'New England', 'United Kingdom', 'SW12 7EA');
-INSERT INTO OrderItems VALUES(NULL, '2', '10', '1');
+INSERT INTO OrderItem VALUES(NULL, '2', '10', '1');
 INSERT INTO Orders VALUES(NULL, '2', '2', '4', '2.50', 'delievered', '2019-01-07', 'cash', '94 Hilltop Road', 'London', 'New England', 'United Kingdom', 'SW12 7EA');
 
-INSERT INTO OrderItems VALUES(NULL, '3', '1', '2');
+INSERT INTO OrderItem VALUES(NULL, '3', '1', '2');
 INSERT INTO Orders VALUES(NULL, '3', '3', '5', '16.00', 'cancelled', '2019-01-07', 'credit_card', '18 Newbury Drive', 'London', 'New England', 'United Kingdom', 'SW16 9PO');
-INSERT INTO OrderItems VALUES(NULL, '3', '11', '1');
+INSERT INTO OrderItem VALUES(NULL, '3', '11', '1');
 INSERT INTO Orders VALUES(NULL, '3', '3', '6', '2.50', 'cancelled', '2019-01-07', 'credit_card', '18 Newbury Drive', 'London', 'New England', 'United Kingdom', 'SW16 9PO');
 
-INSERT INTO OrderItems VALUES(NULL, '4', '3', '4');
+INSERT INTO OrderItem VALUES(NULL, '4', '3', '4');
 INSERT INTO Orders VALUES(NULL, '4', '3', '7', '32.00', 'delievered', '2019-01-08', 'credit_card', '1246 Riverside Road', 'London', 'New England', 'United Kingdom', 'N12 3EL');
-INSERT INTO OrderItems VALUES(NULL, '4', '12', '6');
+INSERT INTO OrderItem VALUES(NULL, '4', '12', '6');
 INSERT INTO Orders VALUES(NULL, '4', '3', '8', '15.00', 'delievered', '2019-01-08', 'credit_card', '1246 Riverside Road', 'London', 'New England', 'United Kingdom', 'N12 3EL');
 
-INSERT INTO OrderItems VALUES(NULL, '5', '4', '1');
+INSERT INTO OrderItem VALUES(NULL, '5', '4', '1');
 INSERT INTO Orders VALUES(NULL, '5', '2', '9', '8.00', 'delievered', '2019-01-08', 'paypal', '201 Weston Place', 'London', 'New England', 'United Kingdom', 'EA59 3NB');
-INSERT INTO OrderItems VALUES(NULL, '5', '13', '2');
+INSERT INTO OrderItem VALUES(NULL, '5', '13', '2');
 INSERT INTO Orders VALUES(NULL, '5', '2', '10', '5.00', 'delievered', '2019-01-08', 'paypal', '201 Weston Place', 'London', 'New England', 'United Kingdom', 'EA59 3NB');
 
-INSERT INTO OrderItems VALUES(NULL, '6', '5', '4');
+INSERT INTO OrderItem VALUES(NULL, '6', '5', '4');
 INSERT INTO Orders VALUES(NULL, '6', '1', '11', '24.00', 'delievered', '2019-01-09', 'paypal', '78 Foxborough', 'London', 'New England', 'United Kingdom', 'EA6 9UN');
-INSERT INTO OrderItems VALUES(NULL, '6', '14', '4');
+INSERT INTO OrderItem VALUES(NULL, '6', '14', '4');
 INSERT INTO Orders VALUES(NULL, '6', '1', '12', '10.00', 'delievered', '2019-01-09', 'paypal', '78 Foxborough', 'London', 'New England', 'United Kingdom', 'EA6 9UN');
 
-INSERT INTO OrderItems VALUES(NULL, '7', '6', '1');
+INSERT INTO OrderItem VALUES(NULL, '7', '6', '1');
 INSERT INTO Orders VALUES(NULL, '7', '2','13', '6.00', 'delievered', '2019-01-09', 'cash', '90 Mansion Palace',	'London', 'New England', 'United Kingdom', 'NM9 7SC');
-INSERT INTO OrderItems VALUES(NULL, '7', '15', '2');
+INSERT INTO OrderItem VALUES(NULL, '7', '15', '2');
 INSERT INTO Orders VALUES(NULL, '7', '2', '14', '5.00', 'delievered', '2019-01-09', 'cash', '90 Mansion Palace',	'London', 'New England', 'United Kingdom', 'NM9 7SC');
 
-INSERT INTO OrderItems VALUES(NULL, '8', '7', '1');
+INSERT INTO OrderItem VALUES(NULL, '8', '7', '1');
 INSERT INTO Orders VALUES(NULL, '8', '3', '15', '5.00', 'delievered', '2019-01-10', 'paypal', '19 Old Street', 'London', 'New England', 'United Kingdom', 'LN2 5UN');
-INSERT INTO OrderItems VALUES(NULL, '8', '15', '2');
+INSERT INTO OrderItem VALUES(NULL, '8', '15', '2');
 INSERT INTO Orders VALUES(NULL, '8', '3', '16', '5.00', 'delievered', '2019-01-10', 'paypal', '19 Old Street', 'London', 'New England', 'United Kingdom', 'LN2 5UN');
 
-INSERT INTO OrderItems VALUES(NULL, '9', '8', '4');
+INSERT INTO OrderItem VALUES(NULL, '9', '8', '4');
 INSERT INTO Orders VALUES(NULL, '9', '2', '17', '24.00', 'delievered', '2019-01-10', 'credit_card', '93 Stranford Road', 'Manchester', 'New England', 'United Kingdom', 'MC7 9CV');
-INSERT INTO OrderItems VALUES(NULL, '9', '14', '2');
+INSERT INTO OrderItem VALUES(NULL, '9', '14', '2');
 INSERT INTO Orders VALUES(NULL, '9', '2', '18', '5.00', 'delievered', '2019-01-10', 'credit_card', '93 Stranford Road', 'Manchester', 'New England', 'United Kingdom', 'MC7 9CV');
 
-
-INSERT INTO OrderItems VALUES(NULL, '10', '10', '8');
+INSERT INTO OrderItem VALUES(NULL, '10', '10', '8');
 INSERT INTO Orders VALUES(NULL, '10', '1', '19', '20.00', 'cancelled', '2019-01-11', 'cash', '1 Anfield', 'Liverpool', 'New England', 'United Kingdom', 'LC1 4PB');
-INSERT INTO OrderItems VALUES(NULL, '10', '3', '2');
+INSERT INTO OrderItem VALUES(NULL, '10', '3', '2');
 INSERT INTO Orders VALUES(NULL, '10', '1', '20', '16.00', 'delievered', '2019-01-11', 'cash', '1 Anfield', 'Liverpool', 'New England', 'United Kingdom', 'LC1 4PB');
 
-INSERT INTO OrderItems VALUES(NULL, '5', '2', '2');
+INSERT INTO OrderItem VALUES(NULL, '5', '2', '2');
 INSERT INTO Orders VALUES(NULL, '5', '2', '21', '16.00', 'delievered', '2019-01-12', 'credit_card', '201 Weston Place', 'London', 'New England', 'United Kingdom', 'EA59 3NB');
-INSERT INTO OrderItems VALUES(NULL, '5', '13', '2'); 
+INSERT INTO OrderItem VALUES(NULL, '5', '13', '2'); 
 INSERT INTO Orders VALUES(NULL, '5', '2', '22', '5.00', 'delievered', '2019-01-12', 'credit_card', '201 Weston Place', 'London', 'New England', 'United Kingdom', 'EA59 3NB');
 
-INSERT INTO OrderItems VALUES(NULL, '3', '5', '2');
+INSERT INTO OrderItem VALUES(NULL, '3', '5', '2');
 INSERT INTO Orders VALUES(NULL, '3', '3', '23', '12.00', 'delievered', '2019-01-13', 'credit_card', '18 Newbury Drive', 'London', 'New England', 'United Kingdom', 'SW16 9PO');
-INSERT INTO OrderItems VALUES(NULL, '3', '10', '1');
+INSERT INTO OrderItem VALUES(NULL, '3', '10', '1');
 INSERT INTO Orders VALUES(NULL, '3', '3', '24', '2.50', 'delievered', '2019-01-13', 'credit_card', '18 Newbury Drive', 'London', 'New England', 'United Kingdom', 'SW16 9PO');
 
+SELECT * FROM OrderItem;
+SELECT * FROM Orders;
 
--- List of Clients
-SELECT * FROM Clients;
+
+-- List of Client
+SELECT * FROM Client;
 
 -- Daily menu
-SELECT * FROM Menu;
+SELECT * FROM DailyMenu;
+SELECT * FROM AllMenu;
 
--- List of Delievery people
-SELECT * FROM Delivers;
+-- List of Driver
+SELECT * FROM Driver;
 
--- order history for each client
-SELECT OrderItems.orderId, Orders.date, Clients.firstName, Clients.lastName, Orders.orderPrice
-FROM OrderItems 
-JOIN Menu USING(itemId)
-JOIN Orders USING(orderId)
-JOIN Clients 
-ON Orders.clientId = Clients.clientId
-WHERE Clients.clientId = 5;
+-- order history for each client 
+SELECT 
+    ordersId, 
+    CONCAT(c.firstName, ' ', c.lastName) as Client, 
+    CONCAT(d.firstName, ' ', d.lastName) as Driver, 
+    orderPrice,
+    date,
+    CONCAT(address, ' ', city, ' ', state) as Address
+FROM Orders o
+JOIN Client c USING(clientId)
+JOIN Driver d USING(driverId)
+WHERE o.clientId = 2;
+
 
